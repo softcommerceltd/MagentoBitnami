@@ -1,0 +1,13 @@
+<?xml version="1.1"?>
+<config>
+    <modules>
+        <Wm_Productslider>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Catalog />
+            </depends>
+            <version>1.0.0</version>
+        </Wm_Productslider>
+    </modules>
+</config>

@@ -1,0 +1,51 @@
+<?php
+$config = $this->getConfigObject();
+$slides = $this->_getSlide(); //Zend_Debug::dump($slides); die();
+$baseUrl = str_replace('https:', 'http:', str_replace('/index.php/', '', $this->getBaseURL()));
+?>
+    <script type="text/javascript">
+        // <![CDATA[
+        $wm_jq(window).load(function()
+        {
+            $wm_jq('.wm-slideshow').fractionSlider(
+                {
+                    'autoChange'    :   <?php echo ($config['autoslide'])?'true':'false';?>,
+                    'timeout'        : 	<?php echo ($config['timeout']); ?>,
+                    'fullWidth'     : 	<?php echo ($config['fullWidth'])?'true':'false';?>,
+                    'dimensions'    : 	"<?php echo ($config['sliderwidth'])?>,<?php echo ($config['sliderheight'])?>",
+                    'controls'      : 	<?php echo ($config['controls'])?'true':'false';?>,
+                    'pager'         : 	<?php echo ($config['pager'])?'true':'false';?>,
+                    'responsive'    : 	true,
+                    'increase'      : 	false,
+                    'pauseOnHover'  : 	false
+                });
+        });
+        // ]]>
+    </script>
+
+    <div class="large-6 medium-6 columns">
+        <div class="intro">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('intro')->toHtml() ?>
+        </div>
+    </div>
+    <div class="large-6 medium-6 columns">
+        <div class="wm_slideshow_block">
+            <div class="responisve-container">
+                <div class="slider wm-slideshow container">
+                    <div class="fs_loader"></div>
+                    <?php
+                    foreach ($slides as $slide) {
+                        echo str_replace('src="', 'src="'.$baseUrl.'/', $slide['slide']);
+                    } ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="wm_shipping">
+            <div class="inner slideshowcase">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('free_shipping')->toHtml(); ?>
+            </div>
+        </div>
+    </div>

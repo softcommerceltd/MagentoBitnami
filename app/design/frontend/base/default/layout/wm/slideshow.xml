@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout version="1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>wm/slideshow/css/slideshow.css</stylesheet></action>
+            <action method="addCss"><stylesheet>wm/slideshow/css/style.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name helper="slideshow/data/getJQquery"/><params/><if/></action>
+            <action method="addItem"><type>skin_js</type><name helper="slideshow/data/getJQqueryNoconflict"/><params/><if/></action>
+            <action method="addItem"><type>skin_js</type><name helper="slideshow/data/getJSFractionSlider"/><params/><if/></action>
+        </reference>
+    </default>
+    <slideshow_index_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>wm/slideshow/css/slideshow.css</stylesheet></action>
+            <action method="addCss"><stylesheet>wm/slideshow/css/style.css</stylesheet></action>
+        </reference>
+        <reference name="slideshow">
+            <block type="slideshow/list" name="slideshow.list">
+            </block>
+        </reference>
+    </slideshow_index_index>
+</layout>

@@ -1,0 +1,96 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     magento-foundation_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<div class="header-container">
+    <header class="main header">
+        <div class="inner">
+
+		    <h1 class="logo">
+			    <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><span>MallowTree</span></a>
+		    </h1>
+			
+		    <div class="quick-access three columns">
+			    <?php echo $this->getChildHtml('topSearch') ?>
+			    <?php // echo $this->getChildHtml('topLinks') ?>
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('social_share')->toHtml(); ?>
+		    </div>
+
+
+            <!-- BEGIN: Navigation Mobile -->
+		    <nav class="top-bar">
+			    <ul>
+				    <li class="toggle-topbar">
+					    <a class="menu-button" href="#" alt="Menu">
+					    <svg width="30" height="20">
+						    <path d="M0,2 20,2" stroke="#fff" stroke-width="2"/>
+						    <path d="M0,10 20,10" stroke="#fff" stroke-width="2"/>
+						    <path d="M0,18 20,18" stroke="#fff" stroke-width="2"/>
+					    </svg>
+					    </a>
+				    </li>
+				    <li class="mini-cart">
+
+					    <?php
+						    $count = $this->helper('checkout/cart')->getSummaryCount();
+						    $total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+					    ?>
+
+					    <?php if($count == 0):?>
+						    <?php echo $this->__('0 Items', $count) ?>
+					    <?php endif; ?>
+
+					    <?php if($count == 1):?>
+						    <?php echo $this->__('1 Item', $count) ?>
+					    <?php endif; ?>
+
+					    <?php if($count >= 2):?>
+						    <?php echo $this->__('%s Items', $count) ?>
+					    <?php endif; ?>
+					    <a title="<?php echo $this->__('Checkout') ?>"  href="<?php echo $this->getUrl('checkout') ?>">
+						    <?php echo $this->helper('checkout')->formatPrice(Mage::getSingleton('checkout/cart')->getQuote()->getGrandTotal()); ?>
+					    </a>
+					    <a class="cart-header" title="<?php echo $this->__('My Cart') ?>" href="<?php echo $this->getUrl('checkout/cart') ?>">
+					    </a>
+				    </li>
+			    </ul>
+			
+			    <section>
+				    <?php echo $this->getChildHtml('catalog_footernav') ?>
+			    </section>
+		    </nav>
+            <!-- END    : Navigation Mobile -->
+		    <?php echo $this->getChildHtml('topMenu') ?>
+        </div>
+
+	</header>
+    
+    <div class="wm_bg_curved">
+        <img src="<?php echo $this->getSkinUrl(); ?>images/bg_curved.png" alt="" />
+    </div>
+</div>

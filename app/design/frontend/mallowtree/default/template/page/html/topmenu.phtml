@@ -1,0 +1,111 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Page_Block_Html_Topmenu
+ */
+?>
+<?php $_menu = $this->getHtml('level-top') ?>
+<?php if($_menu): ?>
+<nav class="nav-container six columns">
+	<ul id="nav">
+
+		<?php // echo $_menu ?>
+
+        <li class="home level0 nav-1 first level-top">
+            <a href="http://192.168.0.2:8080/magento/products.html" class="level-top"><span>Home</span></a>
+        </li>
+
+        <li class="story level0 nav-2 level-top">
+            <a href="http://192.168.0.2:8080/magento/products.html" class="level-top"><span>Our Story</span></a>
+        </li>
+
+        <li class="products level0 nav-3 level-top">
+            <a href="http://192.168.0.2:8080/magento/products.html" class="level-top"><span>Products</span></a>
+        </li>
+
+        <li class="occasions level0 nav-4 level-top">
+            <a href="http://192.168.0.2:8080/magento/occasions.html" class="level-top"><span>Occasions</span></a>
+        </li>
+
+        <li class="trade level0 nav-5 level-top">
+            <a href="http://192.168.0.2:8080/magento/trade.html" class="level-top"><span>Trade</span></a>
+        </li>
+
+        <li class="contacts level0 nav-6 level-top">
+            <a href="http://192.168.0.2:8080/magento/contacts.html" class="level-top"><span>Contacts Us</span></a>
+        </li>
+
+        <li class="shopnow level0 nav-7 last level-top">
+            <a href="http://192.168.0.2:8080/magento/shopnow.html" class="level-top"><span>Shop Now</span></a>
+        </li>
+
+        <li class="mini-cart">
+            <span class="wm_cart_title">
+                <a class="" title="<?php echo $this->__('My Cart') ?>" href="<?php echo $this->getUrl('checkout/cart') ?>">Your Shopping Bag</a>
+            </span>
+
+            <?php
+            $count = $this->helper('checkout/cart')->getSummaryCount();
+            $total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+            ?>
+
+            <span class="wm_cart_count">
+                <?php if($count == 0):?>
+                <a class="" title="<?php echo $this->__('My Cart') ?>" href="<?php echo $this->getUrl('checkout/cart') ?>">
+                    <?php echo $this->__('0 Items', $count) ?>
+                </a>
+                <?php endif; ?>
+
+                <?php if($count == 1):?>
+                <a class="" title="<?php echo $this->__('My Cart') ?>" href="<?php echo $this->getUrl('checkout/cart') ?>">
+                    <?php echo $this->__('1 Item', $count) ?>
+                </a>
+                <?php endif; ?>
+
+                <?php if($count >= 2):?>
+                <a class="" title="<?php echo $this->__('My Cart') ?>" href="<?php echo $this->getUrl('checkout/cart') ?>">
+                    <?php echo $this->__('%s Items', $count) ?>
+                </a>
+                <?php endif; ?>
+
+                <span>|</span>
+                <a title="<?php echo $this->__('Checkout') ?>"  href="<?php echo $this->getUrl('checkout') ?>">
+                    <?php echo $this->helper('checkout')->formatPrice(Mage::getSingleton('checkout/cart')->getQuote()->getGrandTotal()); ?>
+                </a>
+            </span>
+            <span class="wm_cart_go">
+                <a class="" title="<?php echo $this->__('My Cart') ?>" href="<?php echo $this->getUrl('checkout/cart') ?>">Go To Cart</a>
+            </span>
+
+        </li>
+
+    </ul>
+</nav>
+<?php endif ?>
